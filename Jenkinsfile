@@ -11,7 +11,7 @@ pipeline {
         }
         stage("build and test"){
             steps{
-                sh "docker build -t nodeapp-Nutan:latest ."
+                sh "docker build -t nodeapp-nutan:latest ."
                 echo 'code build bhi ho gaya'
             }
         }
@@ -24,8 +24,8 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId:"DockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker tag nodeapp-Nutan:latest ${env.dockerHubUser}/nodeapp-Nutan:latest"
-                sh "docker push ${env.dockerHubUser}/nodeapp-Nutan:latest"
+                sh "docker tag nodeapp-nutan:latest ${env.dockerHubUser}/nodeapp-nutan:latest"
+                sh "docker push ${env.dockerHubUser}/nodeapp-nutan:latest"
                 echo 'image push ho gaya'
                 }
             }
